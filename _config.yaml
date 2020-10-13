@@ -1,0 +1,7 @@
+theme: jekyll-theme-minimal
+
+title: Snowmass CPM Meeting Stats
+description: Some information about the CPM meeting
+
+google_analytics:
+repository: gordonwatts/snowmass-cpm-attendance

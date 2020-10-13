@@ -1,0 +1,19 @@
+<div id="UniqueVis" width="5in"></div>
+<script>
+    var yourVlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
+        description: 'Unique Users as a function of time.',
+        width: 400,
+        data: { "url": "../data/cumulative.csv" },
+        mark: {
+            type: "line",
+            interpolate: "step-after",
+        },
+        encoding: {
+            x: { field: 'Date', type: 'temporal' },
+            y: { field: 'nPeople', type: 'quantitative' },
+            tooltip: {field: "nPeople", type: "quantitative"},
+        }
+    };
+    vegaEmbed('#UniqueVis', yourVlSpec);
+</script>
