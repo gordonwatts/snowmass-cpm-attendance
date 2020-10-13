@@ -128,3 +128,4 @@ dmypy.json
 # Jekyll
 vendor/*
 web/_site/*
+web/.jekyll-metadata
