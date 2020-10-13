@@ -6,12 +6,13 @@
         width: 400,
         data: { "url": "../data/cumulative.csv" },
         mark: {
-            "type": "line",
-            "interpolate": "step-after"
+            type: "line",
+            interpolate: "step-after",
         },
         encoding: {
             x: { field: 'Date', type: 'temporal' },
-            y: { field: 'nPeople', type: 'quantitative' }
+            y: { field: 'nPeople', type: 'quantitative' },
+            tooltip: {field: "nPeople", type: "quantitative"},
         }
     };
     vegaEmbed('#UniqueVis', yourVlSpec);
