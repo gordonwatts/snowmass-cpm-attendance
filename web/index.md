@@ -4,6 +4,8 @@ This site shows some basic statistics for the Snowmass CPM meeting.
 
 - List of [rooms](rooms) that are included.
 
+Note that the data extracted from ZOOM contains no timezone information, as a result some of the plots might be a little off until that is corrected for.
+
 ## New unique users as a function of time
 
 {% include vega.html %}
