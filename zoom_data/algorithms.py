@@ -23,7 +23,13 @@ def accumulated_attendance(meetings: List[ZoomMeetingData]) -> Dict[datetime, in
                 already_seen.add(name)
                 joining[row.Join] += 1
 
-    return joining
+    running_total = dict(joining)
+    count = 0
+    for k in sorted(running_total.keys()):
+        count += running_total[k]
+        running_total[k] = count
+
+    return running_total
 
 
 def running_attendance(meetings: List[ZoomMeetingData]) -> Dict[datetime, int]:
