@@ -1,6 +1,8 @@
 # Snowmass CPM Meeting Attendance
 
-This is a test website.
+This site shows some basic statistics for the Snowmass CPM meeting.
+
+- List of [rooms](rooms) that are included.
 
 ## New unique users as a function of time
 

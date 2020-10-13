@@ -11,14 +11,18 @@ def load_zoom_data(file: Path):
         file (Path): [description]
     '''
     # Get the raw data in
-    header_info = pd.read_csv(file, nrows=1, parse_dates=['Start Time', 'End Time'])  # type: ignore
-    meeting_info = pd.read_csv(file, skiprows=2, parse_dates=['Join Time', 'Leave Time'])  # type: ignore
+    try:
+        header_info = pd.read_csv(file, nrows=1, parse_dates=['Start Time', 'End Time'])  # type: ignore
+        meeting_info = pd.read_csv(file, skiprows=2, parse_dates=['Join Time', 'Leave Time'])  # type: ignore
 
-    # And build the object
-    return ZoomMeetingData(header_info['Meeting ID'][0], header_info['Topic'][0],
-                           header_info['Start Time'][0], header_info['End Time'][0],
-                           header_info['Duration (Minutes)'][0], header_info['Participants'][0],
-                           meeting_info[['Name (Original Name)', 'Join Time', 'Leave Time']])
+        # And build the object
+        return ZoomMeetingData(header_info['Meeting ID'][0], header_info['Topic'][0],
+                               header_info['Start Time'][0], header_info['End Time'][0],
+                               header_info['Duration (Minutes)'][0], header_info['Participants'][0],
+                               meeting_info[['Name (Original Name)', 'Join Time', 'Leave Time']])
+
+    except Exception as e:
+        raise Exception(f'Failed while opening file {str(file)}') from e
 
 
 class ZoomMeetingData:
@@ -55,3 +59,12 @@ class ZoomMeetingData:
             for each person.
         '''
         return self._coming_and_going
+
+    @property
+    def room_name(self) -> str:
+        '''The name of the zoom room
+
+        Returns:
+            str: Name of the room
+        '''
+        return self._topic
