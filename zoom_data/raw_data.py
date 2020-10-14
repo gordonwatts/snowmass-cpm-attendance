@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from pathlib import Path
 import pandas as pd
+import calendar
 
 
 def load_zoom_data(file: Path):
@@ -50,6 +51,24 @@ class ZoomMeetingData:
         self._coming_and_going = coming_and_going
 
         self._coming_and_going.columns = ['Name', 'Join', 'Leave']
+
+        # Extract the ID for the room
+        if self._topic.startswith('CPM Breakout - Zoom'):
+            self._id = 10 + int(self._topic[-2:])
+        elif self._topic.startswith('Plenary '):
+            day = self._topic.split(' ')[1]
+            self._id = list(calendar.day_name).index(day)
+        else:
+            self._id = 0
+
+    @property
+    def id(self) -> int:
+        '''Return the id for a particular room - a nice internal way of isolating things.
+
+        Returns:
+            int: The id of the room
+        '''
+        return self._id
 
     @property
     def coming_and_going(self) -> pd.DataFrame:
