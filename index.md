@@ -13,4 +13,7 @@ Note that the data extracted from ZOOM contains no timezone information, as a re
 
 ## How many people were attending at a given time
 
+{% assign running_room_id = "" %}
 {% include plots/running_users.html %}
+
+[Breakdown by room](running)
