@@ -1,13 +1,26 @@
-- CPM Breakout - Zoom 1
-- CPM Breakout - Zoom 3
-- CPM Breakout - Zoom 4
-- CPM Breakout - Zoom 5
-- CPM Breakout - Zoom 6
-- CPM Breakout - Zoom 7
-- CPM Breakout - Zoom 8
-- CPM Breakout - Zoom 11
-- CPM Breakout - Zoom 14
-- CPM Breakout - Zoom 15
-- CPM Breakout - Zoom 16
-- CPM Breakout - Zoom 17
-- CPM Breakout - Zoom 18
+- id: 1
+  name: CPM Breakout - Zoom 1
+- id: 3
+  name: CPM Breakout - Zoom 3
+- id: 4
+  name: CPM Breakout - Zoom 4
+- id: 5
+  name: CPM Breakout - Zoom 5
+- id: 6
+  name: CPM Breakout - Zoom 6
+- id: 7
+  name: CPM Breakout - Zoom 7
+- id: 8
+  name: CPM Breakout - Zoom 8
+- id: 11
+  name: CPM Breakout - Zoom 11
+- id: 14
+  name: CPM Breakout - Zoom 14
+- id: 15
+  name: CPM Breakout - Zoom 15
+- id: 16
+  name: CPM Breakout - Zoom 16
+- id: 17
+  name: CPM Breakout - Zoom 17
+- id: 18
+  name: CPM Breakout - Zoom 18

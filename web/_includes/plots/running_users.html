@@ -1,10 +1,20 @@
-<div id="RunningVis" width="5in"></div>
+{% if running_room_id == "" %}
+{% assign running_room_url = "data/running.csv" %}
+{% else %}
+{% capture running_room_url %}data/running_{{running_room_id}}.csv{% endcapture %}
+{% endif %}
+{% if running_plot_counter %}
+  {% assign running_plot_counter = running_plot_counter | plus: 1 %}
+{% else %}
+{% assign running_plot_counter = 0 %}
+{% endif %}
+<div id="RunningVis_{{running_plot_counter}}" width="5in"></div>
 <script>
     var yourVlSpec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v4.json',
         description: 'Unique Users as a function of time.',
         width: 400,
-        data: { "url": "data/running.csv" },
+        data: { "url": "{{running_room_url}}" },
         mark: {
             type: "line",
             interpolate: "step-after",
@@ -15,5 +25,5 @@
             tooltip: {field: "nPeople", type: "quantitative"},
         }
     };
-    vegaEmbed('#RunningVis', yourVlSpec);
+    vegaEmbed('#RunningVis_{{running_plot_counter}}', yourVlSpec);
 </script>
