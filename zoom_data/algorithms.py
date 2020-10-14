@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Dict
+from typing import List, Dict, Set
 from zoom_data import ZoomMeetingData
 from collections import defaultdict
 
@@ -14,19 +14,19 @@ def accumulated_attendance(meetings: List[ZoomMeetingData]) -> Dict[datetime, in
         meetings (List[ZoomMeetingData]): The list of zoom meetings. They are all considered together,
         and unique people are considered unique accross all rooms.
     '''
-    already_seen = set()
-    joining = defaultdict(int)
+    joining: Dict[datetime, List[str]] = defaultdict(list)
     for zm in meetings:
-        for index, row in zm.coming_and_going.iterrows():
-            name = row.Name
-            if name not in already_seen:
-                already_seen.add(name)
-                joining[row.Join] += 1
+        for _, row in zm.coming_and_going.iterrows():
+            joining[row.Join].append(row.Name)
 
-    running_total = dict(joining)
+    running_total = defaultdict(int)
+    already_seen: Set[str] = set()
     count = 0
-    for k in sorted(running_total.keys()):
-        count += running_total[k]
+    for k in sorted(joining.keys()):
+        for n in joining[k]:
+            if n not in already_seen:
+                already_seen.add(n)
+                count += 1
         running_total[k] = count
 
     return running_total
