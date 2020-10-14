@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 import pandas as pd
 
@@ -14,6 +14,11 @@ def load_zoom_data(file: Path):
     try:
         header_info = pd.read_csv(file, nrows=1, parse_dates=['Start Time', 'End Time'])  # type: ignore
         meeting_info = pd.read_csv(file, skiprows=2, parse_dates=['Join Time', 'Leave Time'])  # type: ignore
+
+        # The time shift
+        shift = timedelta(hours=int(header_info['TM Shift'][0]))
+        meeting_info['Join Time'] = meeting_info['Join Time'] + shift
+        meeting_info['Leave Time'] = meeting_info['Leave Time'] + shift
 
         # And build the object
         return ZoomMeetingData(header_info['Meeting ID'][0], header_info['Topic'][0],

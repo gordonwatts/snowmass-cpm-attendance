@@ -4,6 +4,7 @@
         "NOQA",
         "Snowmass",
         "autosize",
+        "endfor",
         "iterrows",
         "nrows"
     ]
