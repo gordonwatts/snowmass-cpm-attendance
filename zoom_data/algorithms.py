@@ -52,7 +52,7 @@ def running_attendance(meetings: List[ZoomMeetingData]) -> Dict[datetime, int]:
             joining[row.Join] += 1
             leaving[row.Leave] -= 1
 
-    all_keys = sorted(list(joining.keys()) + list(leaving.keys()))
+    all_keys = sorted(set(list(joining.keys()) + list(leaving.keys())))
 
     running_attendance = defaultdict(int)
     count = 0
