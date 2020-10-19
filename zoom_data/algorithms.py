@@ -64,3 +64,20 @@ def running_attendance(meetings: List[ZoomMeetingData]) -> Dict[datetime, int]:
         running_attendance[k] = count
 
     return running_attendance
+
+
+def all_attendees(meetings: List[ZoomMeetingData]) -> List[str]:
+    '''Return a list of all users that attended the meeting
+
+    Args:
+        meetings (List[ZoomMeetingData]): List of meetings to accumulate over
+
+    Returns:
+        List[str]: List of all users
+    '''
+    already_seen: Set[str] = set()
+    for zm in meetings:
+        for _, row in zm.coming_and_going.iterrows():
+            already_seen.add(row.Name)
+
+    return list(already_seen)
